@@ -8,5 +8,5 @@ import java.util.Optional;
 
 public interface TrainLineRepository extends JpaRepository<TrainLine, Long> {
     List<TrainLine> findBysoTuyenTau(String soTuyenTau);
-    Optional<TrainLine> findBySoTuyenTau(String soTuyenTau);
+    List<TrainLine> findBySoTuyenTauContaining(String soTuyenTau);
 }

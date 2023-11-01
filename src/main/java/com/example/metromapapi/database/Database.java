@@ -22,7 +22,14 @@ public class Database {
             public void run(String... args) throws Exception {
                 TrainLine trainLineA = new TrainLine("Tuyến số Metro 2A", "Cát Linh - Hà Đông", 13.1, Time.valueOf("05:00:00"), Time.valueOf("23:00:00"), 300000, "Hà nội", "Tuyến thuộc khu vực Hà Nội", true);
                 TrainLine trainLineB = new TrainLine("Tuyến số Metro 3", "Ga Nhổn - Ga Hà Nội", 12.5, Time.valueOf("05:00:00"), Time.valueOf("23:00:00"), 300000, "Hà nội", "Tuyến thuộc khu vực Hà Nội", false);
-                logger.info ("insert data: "+ trainLinesRepository.save(trainLineA));
+                TrainLine trainLinec = new TrainLine("Tuyến số Metro 2A", "Cát Linh - Hà Đông", 13.1, Time.valueOf("05:00:00"), Time.valueOf("23:00:00"), 300000, "Hà nội", "Tuyến thuộc khu vực Hà Nội", true);
+                TrainLine trainLined = new TrainLine("Tuyến số Metro 3", "Ga Nhổn - Ga Hà Nội", 12.5, Time.valueOf("05:00:00"), Time.valueOf("23:00:00"), 300000, "Hà nội", "Tuyến thuộc khu vực Hà Nội", false);
+                TrainLine trainLinee = new TrainLine("Tuyến số Metro 2A", "Cát Linh - Hà Đông", 13.1, Time.valueOf("05:00:00"), Time.valueOf("23:00:00"), 300000, "Hà nội", "Tuyến thuộc khu vực Hà Nội", true);
+                TrainLine trainLinef = new TrainLine("Tuyến số Metro 3", "Ga Nhổn - Ga Hà Nội", 12.5, Time.valueOf("05:00:00"), Time.valueOf("23:00:00"), 300000, "Hà nội", "Tuyến thuộc khu vực Hà Nội", false);
+                logger.info ("insert data: "+ trainLinesRepository.save(trainLinec));
+                logger.info ("insert data: "+ trainLinesRepository.save(trainLined));logger.info ("insert data: "+ trainLinesRepository.save(trainLineA));
+                logger.info ("insert data: "+ trainLinesRepository.save(trainLinee));
+                logger.info ("insert data: "+ trainLinesRepository.save(trainLinef));
                 logger.info ("insert data: "+ trainLinesRepository.save(trainLineB));
                 Train trainA = new Train(trainLineA, 1, "Ga cát linh", Time.valueOf("00:10:00"), "192 P. Hào Nam, Chợ Dừa, Đống Đa, Hà Nội, Việt Nam",21.0283377, 105.8247348, "Chưa có", true);
                 Train trainB = new Train(trainLineB, 1, "Ga Nhổn", Time.valueOf("00:10:00"), "P.Tu Hoàng, Nhổn, Từ Liêm, Hà Nội, Việt Nam",21.0537501,105.7309665, "Chưa có", false);

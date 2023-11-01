@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@CrossOrigin("*")
 @RestController
 @RequestMapping(path = "/api/v1/trains")
 public class TrainController {
@@ -55,6 +56,21 @@ public class TrainController {
         }
     }
 
+    @GetMapping("/trainline/{id}")
+    public ResponseEntity<ResponseObject> getTrainByTrainLine(@PathVariable Long id) {
+        TrainLine trainLine = trainLineRepository.findById(id).orElse(null);
+
+        if (trainLine != null) {
+            List<Train> trains = trainRepository.findBytrainLine(trainLine);
+            return ResponseEntity.status(HttpStatus.OK).body(
+                    new ResponseObject("ok", "Đã tìm thấy ga thuộc tuyến " + id, trains)
+            );
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(
+                    new ResponseObject("false", "Không tìm thấy ga thuộc tuyến " + id, "")
+            );
+        }
+    }
 
     @GetMapping("/findname/{tenGa}")
     ResponseEntity<ResponseObject> findByTenGa(@PathVariable String tenGa) {

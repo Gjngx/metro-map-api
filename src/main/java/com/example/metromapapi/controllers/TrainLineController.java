@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+@CrossOrigin("*")
 @RestController
 @RequestMapping(path = "/api/v1/trainlines")
 public class TrainLineController {
@@ -36,18 +37,19 @@ public class TrainLineController {
     }
 
     @GetMapping("/findByNameTrain/{soTuyenTau}")
-    ResponseEntity<ResponseObject> findByNameTrain(@PathVariable String soTuyenTau){
-        Optional<TrainLine> foundTrainLine = trainLinesRepository.findBySoTuyenTau(soTuyenTau);
-        if(foundTrainLine.isPresent()){
+    ResponseEntity<ResponseObject> findByNameTrain(@PathVariable String soTuyenTau) {
+        List<TrainLine> foundTrainLines = trainLinesRepository.findBySoTuyenTauContaining(soTuyenTau);
+        if (!foundTrainLines.isEmpty()) {
             return ResponseEntity.status(HttpStatus.OK).body(
-                    new ResponseObject("ok", "Tìm thấy tuyến tàu với số tuyến tàu là "+ soTuyenTau , foundTrainLine)
+                    new ResponseObject("ok", "Tìm thấy tuyến tàu có số tuyến tàu chứa " + soTuyenTau, foundTrainLines)
             );
-        }else{
+        } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(
-                    new ResponseObject("false", "không tìm thấy tuyến tàu với số tuyến tàu là " + soTuyenTau, "")
+                    new ResponseObject("false", "Không tìm thấy tuyến tàu có số tuyến tàu chứa " + soTuyenTau, "")
             );
         }
     }
+
 
     @PostMapping("/insert")
     ResponseEntity<ResponseObject> insertTrainLine(@RequestBody TrainLine newTrainLine){
