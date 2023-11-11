@@ -59,15 +59,14 @@ public class TrainController {
     @GetMapping("/trainline/{id}")
     public ResponseEntity<ResponseObject> getTrainByTrainLine(@PathVariable Long id) {
         TrainLine trainLine = trainLineRepository.findById(id).orElse(null);
-
         if (trainLine != null) {
             List<Train> trains = trainRepository.findBytrainLine(trainLine);
             return ResponseEntity.status(HttpStatus.OK).body(
-                    new ResponseObject("ok", "Đã tìm thấy ga thuộc tuyến " + id, trains)
+                    new ResponseObject("ok",trainLine.getSoTuyenTau(), trains)
             );
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(
-                    new ResponseObject("false", "Không tìm thấy ga thuộc tuyến " + id, "")
+                    new ResponseObject("false", "Không tìm thấy ga thuộc tuyến " + id, new ArrayList<>())
             );
         }
     }
