@@ -34,6 +34,7 @@ public class TrainController {
         if(foundTrain.isPresent()){
             Train train = foundTrain.get();
             String soTuyenTau = train.getTrainLine().getSoTuyenTau();
+            Long idTuyenTau = train.getTrainLine().getId();
             ShowTrainDTO showTrainDTO = new ShowTrainDTO(
                     train.getId(),
                     train.getsTTGa(),
@@ -44,7 +45,8 @@ public class TrainController {
                     train.getLng(),
                     train.getMoTa(),
                     train.isTrangThai(),
-                    soTuyenTau
+                    soTuyenTau,
+                    idTuyenTau
             );
             return ResponseEntity.status(HttpStatus.OK).body(
                     new ResponseObject("ok", "Đã tìm thấy ga với id = " + id, showTrainDTO)
@@ -78,6 +80,7 @@ public class TrainController {
             List<ShowTrainDTO> showTrainDTOs = new ArrayList<>();
             for (Train train : foundTrains) {
                 String soTuyenTau = train.getTrainLine().getSoTuyenTau();
+                Long idTuyenTau = train.getTrainLine().getId();
                 ShowTrainDTO showTrainDTO = new ShowTrainDTO(
                         train.getId(),
                         train.getsTTGa(),
@@ -88,7 +91,8 @@ public class TrainController {
                         train.getLng(),
                         train.getMoTa(),
                         train.isTrangThai(),
-                        soTuyenTau
+                        soTuyenTau,
+                        idTuyenTau
                 );
                 showTrainDTOs.add(showTrainDTO);
             }

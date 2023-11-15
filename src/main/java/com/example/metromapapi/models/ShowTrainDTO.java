@@ -13,11 +13,12 @@ public class ShowTrainDTO {
     private String moTa;
     private boolean trangThai;
     private String soTuyenTau;
+    private Long idTuyenTau;
 
     public ShowTrainDTO() {
     }
 
-    public ShowTrainDTO(Long trainId, int sTTGa, String tenGa, Time thoiGian, String diaChi, Double lat, Double lng, String moTa, boolean trangThai, String soTuyenTau) {
+    public ShowTrainDTO(Long trainId, int sTTGa, String tenGa, Time thoiGian, String diaChi, Double lat, Double lng, String moTa, boolean trangThai, String soTuyenTau, Long idTuyenTau) {
         this.trainId = trainId;
         this.sTTGa = sTTGa;
         this.tenGa = tenGa;
@@ -28,6 +29,7 @@ public class ShowTrainDTO {
         this.moTa = moTa;
         this.trangThai = trangThai;
         this.soTuyenTau = soTuyenTau;
+        this.idTuyenTau = idTuyenTau;
     }
 
     public Long getTrainId() {
@@ -110,6 +112,14 @@ public class ShowTrainDTO {
         this.soTuyenTau = soTuyenTau;
     }
 
+    public Long getIdTuyenTau() {
+        return idTuyenTau;
+    }
+
+    public void setIdTuyenTau(Long idTuyenTau) {
+        this.idTuyenTau = idTuyenTau;
+    }
+
     @Override
     public String toString() {
         return "ShowTrainDTO{" +
@@ -123,6 +133,7 @@ public class ShowTrainDTO {
                 ", moTa='" + moTa + '\'' +
                 ", trangThai=" + trangThai +
                 ", soTuyenTau='" + soTuyenTau + '\'' +
+                ", idTuyenTau=" + idTuyenTau +
                 '}';
     }
 }
